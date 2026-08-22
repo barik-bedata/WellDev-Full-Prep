@@ -1,8 +1,8 @@
 # WellDev Interview Prep — DSA (Data Structures & Algorithms)
 
-> Source: CPS Academy — "WellDev Interview Prep — Bangla" course (Question Bank + Module 1–13).
-> শুধু **প্রশ্ন + সংশ্লিষ্ট LeetCode link** — সমাধান দেওয়া হয়নি, নিজে চেষ্টা করার জন্য।
-> WellDev-এর real interview experience থেকে সংকলিত। Coding round-এর বেশিরভাগ প্রশ্নই LeetCode Easy/Medium।
+> Source: CPS Academy — "WellDev Interview Prep" course (Question Bank + Module 1–13).
+> Only **questions + corresponding LeetCode links** — solutions are not provided, meant for self-practice.
+> Compiled from real WellDev interview experiences. Most coding round questions are LeetCode Easy/Medium.
 
 ---
 
@@ -72,7 +72,7 @@
 ## Sorting
 
 - **Merge Sort — implement it.**
-  🔗 [912. Sort an Array](https://leetcode.com/problems/sort-an-array/) (merge sort দিয়ে)
+  🔗 [912. Sort an Array](https://leetcode.com/problems/sort-an-array/) (using merge sort)
 
 - **Quick Sort — implement it (pivot & partition).**
   🔗 No single LC problem — implement directly, or apply on [912. Sort an Array](https://leetcode.com/problems/sort-an-array/)
@@ -194,12 +194,5 @@
   ```
   🔗 [509. Fibonacci Number](https://leetcode.com/problems/fibonacci-number/) (naive recursion → exponential O(2ⁿ); memoize to fix)
 
-## Math / Aptitude
-
-- **Percentage and speed–distance math problems.**
-  🔗 No LeetCode equivalent — aptitude round (see Fundamentals & Math file for formulas).
-
----
-
-### একটা কথা
-Coding round-এর অর্ধেকের বেশি প্রশ্ন LeetCode Easy/Medium — hard দিয়ে ফাঁসানোর চেষ্টা না, ভিত্তি যাচাই করার চেষ্টা। প্রথমে brute force বলা শক্তি, দুর্বলতা না — এটা দেখায় তুমি প্রশ্নটা বুঝেছ। তারপর নিজে optimize করলে ভালো।
+### A Note
+More than half of the coding round questions are LeetCode Easy/Medium — the goal is not to trap you with hard problems, but to test your fundamentals. Mentioning the brute force approach first is a strength, not a weakness — it shows you understand the problem. After that, it is better if you optimize it yourself.
