@@ -91,6 +91,9 @@
 - **Write a basic recursive implementation problem.**
   🔗 [344. Reverse String](https://leetcode.com/problems/reverse-string/) · [50. Pow(x, n)](https://leetcode.com/problems/powx-n/)
 
+- **Tower of Hanoi**
+  🔗 Classic recursion problem.
+
 - **Given a recursive function that calculates the sum of the first N consecutive numbers, provide an appropriate, readable name for the function.** (Tests naming ability — see Fundamentals file, Lesson 9)
   🔗 No LeetCode equivalent — code-quality / naming discussion.
 
@@ -200,5 +203,3 @@
 
 ### একটা কথা
 Coding round-এর অর্ধেকের বেশি প্রশ্ন LeetCode Easy/Medium — hard দিয়ে ফাঁসানোর চেষ্টা না, ভিত্তি যাচাই করার চেষ্টা। প্রথমে brute force বলা শক্তি, দুর্বলতা না — এটা দেখায় তুমি প্রশ্নটা বুঝেছ। তারপর নিজে optimize করলে ভালো।
-
-**Recommended order:** Fundamentals (swap/pointer trivia) → Array & Prefix Sum → Two Pointer → String → Binary Search → Sorting → Recursion → DP → Linked List → Stack/Queue → Tree/BST → Graph।

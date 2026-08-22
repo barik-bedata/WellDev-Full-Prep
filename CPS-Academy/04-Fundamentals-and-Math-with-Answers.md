@@ -382,6 +382,9 @@ Practice: এই প্রশ্নের সরাসরি LeetCode নাই�
 - সুবিধা: Dynamic size (রানটাইমে বাড়ে-কমে), মাঝখানে/শুরুতে O(1) insert-delete (node reference থাকলে), memory fragmentation সহনশীল (contiguous block দরকার নেই)।
 - অসুবিধা: Random access নেই (O(n) traversal লাগে), extra memory (pointer/reference-এর জন্য), cache-unfriendly (scattered memory), reverse traversal কঠিন (singly linked list-এ)।
 
+**Q: Linked List-এর Head কী? এটি কি কোনো Node নাকি Pointer?**
+Head মূলত কোনো Node নয়, এটি হলো একটি **Pointer** (বা Reference), যা Linked List-এর প্রথম Node-এর মেমরি অ্যাড্রেস (ঠিকানা) ধরে রাখে। Head-এর মাধ্যমে আমরা পুরো List-টি অ্যাক্সেস করতে পারি। যদি List ফাঁকা (empty) থাকে, তবে Head-এর মান `NULL` হয়।
+
 **Q: Circular Linked List কী?**
 এমন linked list যেখানে শেষ node আবার প্রথম node-কে নির্দেশ করে (লেজ মাথায় ফিরে আসে) — তাই কোনো `NULL` দিয়ে শেষ হয় না। ব্যবহার: round-robin scheduling, circular buffer। Insertion/deletion সাধারণ linked list-এর মতোই, শুধু শেষ node-এর `next` সবসময় head-কে নির্দেশ করে রাখতে হয় (বিশেষ care লাগে যেন loop ভুলভাবে না ভাঙে)।
 
