@@ -13,52 +13,117 @@
 
 # ১. Programming Fundamentals
 
-## Lesson 1 — "Variable swap" | WellDev Interview Question
+## Lesson 1 - Variable Swap (C ও C++)
 
-প্রশ্নটা
+দুইটি Variable-এর মান অদলবদল (Swap) করা ইন্টারভিউয়ের একটি সাধারণ প্রশ্ন। 
 
-দুইটা variable a আর b দেওয়া আছে। এদের মান বদলাবদলি করো — শেষে a-তে থাকবে b-র আগের মান, আর b-তে থাকবে a-র আগের মান।
+### ১. Variable SWAP: C
 
-Input: a = 5, b = 10 Output: a = 10, b = 5
-
-স্বাভাবিক সমাধান
-
-মূল ধারণা: a = b মানে "b সরে a-তে গেল" না। মানে "b-র একটা copy a-র উপর বসল, আর a-তে যা ছিল সেটা মুছে গেল।"
-
-```cpp
+**Function-এর বাইরে (সাধারণ Swap):**
+```c
 int a = 5, b = 10;
-int temp = a; // Step 1: হারানোর আগে জমা রাখলাম
-a = b;        // Step 2: এখন নিরাপদে overwrite
-b = temp;     // Step 3: জমানো মান ফিরিয়ে আনলাম
+int temp = a;
+a = b;
+b = temp;
 ```
 
-Time: O(1), Space: O(1) — extra variable একটা।
+**Function-এর ভেতরে (Pointer ব্যবহার করে):**
+C-তে Pass-by-Reference নেই, তাই Pointer ব্যবহার করতে হয়।
+```c
+void swapValues(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+// কল করার নিয়ম: swapValues(&x, &y);
+```
 
-Follow-up ১ — "এখন এটাকে একটা function বানাও" (pass by reference)
+**যোগ-বিয়োগ দিয়ে (Temp ছাড়া):**
+```c
+void swapWithoutTemp(int *a, int *b) {
+    *a = *a + *b;
+    *b = *a - *b;
+    *a = *a - *b;
+}
+```
+*(সতর্কতা: যোগফল Integer-এর সীমা ছাড়িয়ে গেলে Overflow হতে পারে।)*
 
+**গুণ-ভাগ দিয়ে (Temp ছাড়া):**
+```c
+void swapWithMultiplication(int *a, int *b) {
+    *a = *a * *b;
+    *b = *a / *b;
+    *a = *a / *b;
+}
+```
+*(সতর্কতা: b এর মান 0 হলে Division by Zero এরোর হবে, এবং Overflow দ্রুত হবে।)*
+
+**XOR দিয়ে (Temp ও Overflow ছাড়া):**
+```c
+void swapWithXor(int *a, int *b) {
+    if (a == b) return; // একই অ্যাড্রেস হলে মান 0 হয়ে যাবে, তাই এই চেকটি জরুরি
+    *a ^= *b;
+    *b ^= *a;
+    *a ^= *b;
+}
+```
+*(সতর্কতা: XOR শুধু Integer-এর ওপর কাজ করে, float/double এ কাজ করে না।)*
+
+---
+
+### ২. Variable SWAP: C++
+
+C++ এর ক্ষেত্রে C-এর পদ্ধতিগুলোর পাশাপাশি আরও কিছু আধুনিক পদ্ধতি রয়েছে।
+
+**Function-এর বাইরে (সাধারণ Swap):**
+```cpp
+int a = 5, b = 10;
+int temp = a;
+a = b;
+b = temp;
+```
+
+**Function-এর ভেতরে (Reference ব্যবহার করে):**
+C++ এ Pointer-এর বদলে Reference (`&`) ব্যবহার করা ভালো, কারণ এতে কোড পরিষ্কার থাকে।
 ```cpp
 void swapValues(int &a, int &b) {
     int temp = a;
     a = b;
     b = temp;
 }
+// কল করার নিয়ম: swapValues(x, y);
 ```
-& দিলে copy হয় না — আসল variable-এর reference পাঠানো হয়, তাই ভিতরের পরিবর্তন বাইরেও দেখা যায়।
 
-Follow-up ২ — "C-তে reference নাই, Pointer দিয়ে করো"
-
+**যোগ-বিয়োগ দিয়ে (Temp ছাড়া):**
 ```cpp
-void swapValues(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+void swapWithoutTemp(int &a, int &b) {
+    a = a + b;
+    b = a - b;
+    a = a - b;
 }
-// call: swapValues(&x, &y);
 ```
-*a মানে "a যেখানে দেখাচ্ছে সেখানকার মান"। Reference বনাম pointer: C++-এ reference ভালো (syntax পরিষ্কার, null হতে পারে না); C-তে pointer ছাড়া উপায় নাই।
 
-Follow-up ৩ — "string swap করতে পারবে?" (Template)
+**গুণ-ভাগ দিয়ে (Temp ছাড়া):**
+```cpp
+void swapWithMultiplication(int &a, int &b) {
+    a = a * b;
+    b = a / b;
+    a = a / b;
+}
+```
 
+**XOR দিয়ে (Temp ও Overflow ছাড়া):**
+```cpp
+void swapWithXor(int &a, int &b) {
+    if (&a == &b) return;
+    a ^= b;
+    b ^= a;
+    a ^= b;
+}
+```
+
+**Template দিয়ে (যেকোনো Type এর জন্য):**
+C++ এ Template ব্যবহার করে একটি Function দিয়েই integer, string, double সবই Swap করা যায়।
 ```cpp
 template <typename T>
 void swapValues(T &a, T &b) {
@@ -66,116 +131,17 @@ void swapValues(T &a, T &b) {
     a = b;
     b = temp;
 }
+// string, int, double সবকিছুর জন্যই কাজ করবে।
 ```
-এক function দিয়ে int, double, string, custom class — সব type-এ কাজ করে।
 
-Follow-up ৪ — "std::swap আছেই, নিজে লিখছ কেন?" (honesty check)
-
-সঠিক উত্তর: "Production-এ আমি std::swap-ই ব্যবহার করব — এটা move semantics ব্যবহার করে, বড় object-এ copy বানায়ই না, আমার code-এর চেয়ে ভালো। এখানে নিজে লিখছি কারণ ভিতরের mechanism দেখানোর জন্য।"
-
+**Production/Real Code এ Swap (`std::swap`):**
+ইন্টারভিউতে উপরের পদ্ধতিগুলো জিজ্ঞেস করা হলেও, আসল প্রজেক্টে সবসময় C++ এর নিজস্ব `std::swap` ব্যবহার করা উচিত।
 ```cpp
 #include <utility>
-swap(x, y); // int, string সব চলে — std::swap ও template
+int a = 5, b = 10;
+std::swap(a, b); 
 ```
-
-Follow-up ৫ — "temp ছাড়া পারবে?" (arithmetic swap — বিস্তারিত Lesson 2-তে)
-
-```cpp
-void swapWithoutTemp(int &a, int &b) {
-    a = a + b; // দুইটা মান a এর ভিতরে মিশে আছে
-    b = a - b; // মিশ্রণ থেকে B বাদ দিলে A বের হয়
-    a = a - b; // মিশ্রণ থেকে A বাদ দিলে B বের হয়
-}
-```
-এতে দুইটা bug লুকিয়ে আছে (overflow, একই variable-এর address হলে ভেঙে যাওয়া) — Lesson 2-তে বিস্তারিত।
-
-সারাংশ — পুরো follow-up flow
-| Interviewer বলল | তুমি দেখালে |
-|---|---|
-| "Swap two variables" | temp দিয়ে তিন লাইন — assignment মানে copy |
-| "Function বানাও" | `&` — pass by reference |
-| "Pointer দিয়ে করো" | `*a, *b` |
-| "string পারবে?" | `template <typename T>` |
-| "std::swap আছে তো?" | কখন চাকা নতুন বানাবে না |
-| "temp ছাড়া?" | arithmetic swap (Lesson 2) |
-
-অনুশীলনের জন্য (swap-এর নিজের কোনো LeetCode নাই, কিন্তু swap মূল কাজ এমন problem):
-- 344. Reverse String
-- 283. Move Zeroes
-- 905. Sort Array By Parity
-- 189. Rotate Array
-
----
-
-## Lesson 2 — "Swapping value without using Temp variable"
-
-প্রশ্ন: temp/তৃতীয় variable ছাড়া দুইটা variable swap করো।
-
-সমাধান (arithmetic swap):
-```cpp
-a = a + b; // দুইটা মান মিশে গেল
-b = a - b; // মিশ্রণ থেকে B বাদ = A
-a = a - b; // মিশ্রণ থেকে A বাদ = B
-```
-Time O(1), Space O(1) — কোনো extra variable লাগে না।
-
-গুরুত্বপূর্ণ সমস্যা ও উত্তর:
-1) **Overflow ঝুঁকি** — a+b, int-এর সীমা (INT_MAX = 2147483647) ছাড়িয়ে গেলে undefined behavior। বেশিরভাগ machine-এ wrap-around হয়ে কাজ করে, কিন্তু standard-অনুযায়ী ভরসাযোগ্য না।
-2) **Aliasing bug — swap(x, x)** — একই variable দুইবার পাঠালে মান শূন্য হয়ে যায় (a=a+b→2x, b=a-b→0, a=a-b→0)। সমাধান — guard clause: `if (&a == &b) return;`
-3) **গুণ-ভাগ দিয়েও করা যায়** (a=a*b; b=a/b; a=a/b;) কিন্তু আরও খারাপ — division by zero (b=0 হলে crash), overflow আরও দ্রুত হয়, double-এ precision হারায়।
-4) **string-এ চলে না** — কারণ string-এ `+` (concatenation) আছে কিন্তু তার বিপরীত `-` operator নাই, তাই মিশ্রণ খোলা যায় না। temp লাগবেই।
-5) **Overflow-মুক্ত বিকল্প** → XOR (দেখুন Lesson 3)।
-
-তুলনা: temp-version সবসময় নিরাপদ ও সব type-এ চলে (production-এ std::swap ব্যবহার করা উচিত); arithmetic-version শুধু interview-তে concept দেখানোর জন্য।
-
-Practice: 268. Missing Number (একই যোগ-বিয়োগ যুক্তি), 136. Single Number (XOR ভিত্তি)
-
----
-
-## Lesson 3 — XOR দিয়ে Swap ও তার Bit-level ব্যাখ্যা
-
-প্রশ্ন: temp ছাড়া, এবং overflow-ঝুঁকি ছাড়া, দুইটা variable swap করো।
-
-XOR-এর দুইটা মূল ধর্ম:
-- A ^ A = 0 (নিজের সাথে XOR = শূন্য)
-- A ^ 0 = A (শূন্যের সাথে XOR = অপরিবর্তিত)
-→ তাই A ^ B ^ B = A (associative+commutative প্রমাণসহ)
-
-সমাধান:
-```cpp
-a ^= b; // দুইটা মান মিশে গেল, bit বাড়ে না তাই overflow নাই
-b ^= a; // B কেটে A বের হলো
-a ^= b; // A কেটে B বের হলো
-```
-Time O(1), Space O(1), কোনো overflow ঝুঁকি নাই (bit ছাড়া কিছু বাড়ে না)।
-
-গুরুত্বপূর্ণ পয়েন্ট:
-1) **প্রমাণ**: b_new = (A^B)^B = A^(B^B) = A^0 = A; a_new2 = (A^B)^A = B (commutative+associative দিয়ে)।
-2) **swap(x, x)** — এখানেও bug থেকে যায়! a^=b → x^x=0 হয়ে যায়, পুরো মান ধ্বংস। Overflow সারলেও aliasing সারে না। সমাধান একই guard clause: `if (&a == &b) return;`
-3) **double/float-এ চলে না** — `^` শুধু integer type-এ কাজ করে (int, long, char, bool); floating-point-এর bit layout (sign/exponent/mantissa) এলোমেলো করলে অর্থহীন সংখ্যা হয়, তাই compile error।
-4) **তুলনা টেবিল (temp vs arithmetic vs XOR):**
-
-| | Temp | যোগ-বিয়োগ | XOR |
-|---|---|---|---|
-| Extra variable | একটা | নাই | নাই |
-| Overflow | নাই | আছে (UB) | নাই |
-| swap(x,x) | নিরাপদ | ০ করে দেয় | ০ করে দেয় |
-| যে type-এ চলে | সব | শুধু সংখ্যা | শুধু integer |
-| Production-এ ব্যবহারযোগ্য? | হ্যাঁ (std::swap) | না | না |
-
-XOR arithmetic-এর চেয়ে ভালো (overflow নাই), কিন্তু temp-এর চেয়ে খারাপ (aliasing bug + শুধু integer + দ্রুতও না, কারণ modern compiler temp-swap-কে register-এ optimize করে ফেলে)।
-
-5) **XOR-এর আসল ব্যবহার — Single Number (136)**: array-তে সব সংখ্যা জোড়ায় আছে, একটা ছাড়া; সেই একলা সংখ্যা বের করো O(n)/O(1):
-```cpp
-int singleNumber(vector<int>& nums) {
-    int result = 0;
-    for (int num : nums) result ^= num;
-    return result;
-}
-```
-জোড়া সংখ্যাগুলো A^A=0 হয়ে কেটে যায়, শুধু একলা সংখ্যা টিকে থাকে (0^X=X)।
-
-Practice: 136. Single Number, 268. Missing Number (দুইভাবে করে তুলনা), 389. Find the Difference, 260. Single Number III
+*(এটি অনেক দ্রুত এবং বড় অবজেক্টের ক্ষেত্রে Copy না বানিয়ে Move Semantics ব্যবহার করে।)*
 
 ---
 
