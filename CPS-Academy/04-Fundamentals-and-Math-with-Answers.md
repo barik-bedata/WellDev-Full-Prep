@@ -490,4 +490,4 @@ Common events: `click`/`dblclick` (মাউস), `keydown`/`keyup` (কীব�
 2. Profit%/Loss% সবসময় CP-র উপর, SP-র উপর না
 3. গড় speed সরল গড় না, harmonic mean
 
-Practice: এটা programming না, তাই LeetCode নেই — R.S. Aggarwal জাতীয় aptitude বই, IndiaBix-এর মতো অনলাইন quiz, campus placement paper দিয়ে সময় ধরে দৈনিক অনুশীলন উপকারী।
+Practice: এটা programming না, তাই LeetCode নেই - R.S. Aggarwal জাতীয় aptitude বই, IndiaBix-এর মতো অনলাইন quiz, campus placement paper দিয়ে সময় ধরে দৈনিক অনুশীলন উপকারী।
