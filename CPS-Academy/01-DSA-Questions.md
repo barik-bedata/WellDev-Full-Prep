@@ -1,7 +1,6 @@
 # WellDev Interview Prep — DSA (Data Structures & Algorithms)
 
-> Source: CPS Academy — "WellDev Interview Prep" course (Question Bank + Module 1–13).
-> Only **questions + corresponding LeetCode links** — solutions are not provided, meant for self-practice.
+> Only **questions + corresponding LeetCode links** - solutions are not provided for self-practice.
 > Compiled from real WellDev interview experiences. Most coding round questions are LeetCode Easy/Medium.
 
 ---
@@ -61,7 +60,7 @@
   🔗 [704. Binary Search](https://leetcode.com/problems/binary-search/) · [35. Search Insert Position](https://leetcode.com/problems/search-insert-position/) · [33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
 
 - **Can we run binary search on a linked list? Why or why not?**
-  🔗 Theory — but see [109. Convert Sorted List to BST](https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/) for the practical workaround.
+  🔗 Theory - but see [109. Convert Sorted List to BST](https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/) for the practical workaround.
 
 - **Koko Eating Bananas** (binary search on the answer)
   🔗 [875. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/)
@@ -71,11 +70,11 @@
 
 ## Sorting
 
-- **Merge Sort — implement it.**
+- **Merge Sort - implement it.**
   🔗 [912. Sort an Array](https://leetcode.com/problems/sort-an-array/) (using merge sort)
 
-- **Quick Sort — implement it (pivot & partition).**
-  🔗 No single LC problem — implement directly, or apply on [912. Sort an Array](https://leetcode.com/problems/sort-an-array/)
+- **Quick Sort - implement it (pivot & partition).**
+  🔗 No single LC problem - implement directly, or apply on [912. Sort an Array](https://leetcode.com/problems/sort-an-array/)
 
 - **Sort Colors (Dutch National Flag)**
   🔗 [75. Sort Colors](https://leetcode.com/problems/sort-colors/)
@@ -194,5 +193,7 @@
   ```
   🔗 [509. Fibonacci Number](https://leetcode.com/problems/fibonacci-number/) (naive recursion → exponential O(2ⁿ); memoize to fix)
 
+
+
 ### A Note
-More than half of the coding round questions are LeetCode Easy/Medium — the goal is not to trap you with hard problems, but to test your fundamentals. Mentioning the brute force approach first is a strength, not a weakness — it shows you understand the problem. After that, it is better if you optimize it yourself.
+More than half of the coding round questions are LeetCode Easy/Medium - the goal is not to trap you with hard problems, but to test your fundamentals. Mentioning the brute force approach first is a strength, not a weakness - it shows you understand the problem. After that, it is better if you optimize it yourself.
